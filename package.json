@@ -1,0 +1,33 @@
+{
+  "name": "express-backend",
+  "version": "1.0.0",
+  "description": "Node.js Restful Api",
+  "main": "server.js",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.5.2",
+    "morgan": "^1.9.1",
+    "request": "^2.88.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/proyection/express-backend.git"
+  },
+  "keywords": [
+    "node",
+    "restful"
+  ],
+  "author": "Proyection",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/proyection/express-backend/issues"
+  },
+  "homepage": "https://github.com/proyection/express-backend#readme"
+}
