@@ -15,12 +15,15 @@ export class UserController {
     }
 
     async save(request: Request, response: Response, next: NextFunction) {
+        console.log("User saved");
         return this.userRepository.save(request.body);
+        
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {
         let userToRemove = await this.userRepository.findOne(request.params.id);
         await this.userRepository.remove(userToRemove);
-    }
+        console.log("User delete");
 
+    }
 }
