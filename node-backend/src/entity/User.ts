@@ -15,10 +15,10 @@ export class User {
     password: string;
 
     @Column()
-    firstName: number;
+    firstName: string;
 
     @Column()
-    lastName: number;
+    lastName: string;
 
     @Column()
     enabled: boolean;
