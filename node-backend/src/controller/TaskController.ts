@@ -1,22 +1,34 @@
 import {getRepository} from "typeorm";
 import {NextFunction, Request, Response} from "express";
 import {Task} from "../entity/Task";
+import {User} from "../entity/User";
 
 export class TaskController {
 
     private taskRepository = getRepository(Task);
+    private userRepository = getRepository(User);
 
     //MISSING STH
     async save(request: Request, response: Response, next: NextFunction) {
         console.log("Task saved");
-        return this.taskRepository.save(request.body);
-        
+        let {summary, acceptanceCriteria, status, createdBy, modifiedBy, limitDate, done} = request.body;
+        let user = await this.userRepository.findOne(request.params.id);
+        let task = new Task();
+        task.summary = summary;
+        task.acceptanceCriteria = acceptanceCriteria;
+        task.user = user;
+        task.status = status;
+        task.createdBy = createdBy;
+        task.modifiedBy = modifiedBy;
+        task.limitDate = limitDate;
+        task.done = done;
+        task.user = user;
+        return this.taskRepository.save(task);
     }
 
-    //TO DO
     async allTasksByUserId(request: Request, response: Response, next: NextFunction) {
-        //return this.taskRepository.findOne(request.params.userId);
-        
+        let userOwner = await this.userRepository.findOne(request.params.id);
+        return this.taskRepository.find({where:{user:userOwner}});
     }
 
     async oneTask(request: Request, response: Response, next: NextFunction) {
