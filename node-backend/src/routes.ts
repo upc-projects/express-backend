@@ -1,4 +1,5 @@
 import {UserController} from "./controller/UserController";
+import {TaskController} from "./controller/TaskController";
 
 export const Routes = [{
     method: "get",
@@ -20,4 +21,34 @@ export const Routes = [{
     route: "/users/:id",
     controller: UserController,
     action: "remove"
+},{
+    method: "post",
+    route: "/users/:id/tasks",
+    controller: TaskController,
+    action: "save"
+},{
+    method: "get",
+    route: "/users/:id/tasks",
+    controller: TaskController,
+    action: "allTasksByUserId"
+},{
+    method: "get",
+    route: "/tasks/:id",
+    controller: TaskController,
+    action: "oneTask"
+},{
+    method: "get",
+    route: "/tasks",
+    controller: TaskController,
+    action: "allTasks"
+},{
+    method: "post",
+    route: "/users/:userId/tasks/:taskId",
+    controller: TaskController,
+    action: "updateTask"
+},{
+    method: "delete",
+    route: "/users/:userId/tasks/:taskId",
+    controller: TaskController,
+    action: "removeTask"
 }];
