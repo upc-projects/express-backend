@@ -15,17 +15,17 @@ Given("a variable set to {int}", function(number) {
 
 //REGISTRAR USUARIO
 
-Given("user name is empty", function(request) {
+  Given("user name is empty", function(request) {
     this.setTo(request);
-});
+  });
 
-    When('post method "save user" is executed', function(request) {
-        this.service.save(request);
-    });
+  When('post method "save user" is executed', function(request) {
+    this.service.save(request);
+  });
 
-    Then('the user recieves the message {string}', function(expectedAnswer) {
-        expect(this.response).to.eql(expectedAnswer);
-    });
+  Then('the user recieves the message {string}', function(expectedAnswer) {
+    expect(this.response).to.eql(expectedAnswer);
+  });
 
 // Given("user password is empty", function(request) {
 //     this.setTo(request)
