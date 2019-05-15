@@ -16,6 +16,7 @@ const task = {
 
     allTasksByUserId: (requestUser: number,  db:Array<Request>, next: NextFunction)=>  {
         let userId = requestUser;
+        
         return db.filter(tasks=>tasks.params.userId==userId);
 
     },
@@ -40,7 +41,7 @@ const task = {
         task.body.modifiedBy = request.body.modifiedBy;
         task.body.limitDate = request.body.limitDate;
         task.body.done = request.body.done;
-
+        console.log("Task updated");
         return task;
 
     },

@@ -59,39 +59,54 @@ const dbMockTask = [
         params:{
             id:1
         }
-    }/*,
-    task2 ={
+    },task2 ={
         body:{
-            summary:'Avanzar base de datos',
-            acceptanceCriteria:'Base de datos semifuncional',
-            status:2,
-            createdBy:User.nombre,
+            summary:'Comenzar base de datos',
+            acceptanceCriteria:'Base de datos en cero',
+            status:1,
+            createdBy:'Miguel',
             modifiedBy:null,
             limitDate:'2017-01-26',
-            done:0,
-            user:User
+            done:1,
+            user:miguel = {
+                body: {
+                    nombre: 'Miguel',
+                    apellido: 'Cruz'
+                },
+                params: {
+                    id: 2
+                }
+            }
         },
         params:{
             id:2,
-            userId:User.id
+            userId:2
         }
     },
     task3 ={
         body:{
-            summary:'Crear base de datos',
-            acceptanceCriteria:'Base de datos no existe',
-            status:0,
-            createdBy:User.nombre,
+            summary:'Actualizar base de datos',
+            acceptanceCriteria:'Base de datos a medias',
+            status:1,
             modifiedBy:null,
-            limitDate:'2017-01-26',
+            limitDate:'2017-01-28',
             done:0,
-            user:User
+            user:miguel = {
+                body: {
+                    nombre: 'Miguel',
+                    apellido: 'Cruz'
+                },
+                params: {
+                    id: 2
+                }
+            }
         },
         params:{
             id:3,
-            userId:User.id
+            userId:2
         }
-    }*/
+    }
+    
 ];
 
 module.exports = {
