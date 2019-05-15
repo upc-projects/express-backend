@@ -1,43 +1,46 @@
 const { Given, When, Then } = require("cucumber");
 const { expect } = require("chai");
 
-Given("a variable set to {int}", function(number) {
-    this.setTo(number);
-  });
-  
-  When("I increment the variable by {int}", function(number) {
-    this.incrementBy(number);
-  });
-  
-  Then("the variable should contain {int}", function(number) {
-    expect(this.variable).to.eql(number);
-  }); 
-
 //REGISTRAR USUARIO
 
-Given("user name is empty", function(request) {
-    this.setTo(request);
+Given("user name is {string}", function(enzo) {
+    this.setRequest(enzo);
 });
 
-    When('post method "save user" is executed', function(request) {
-        this.service.save(request);
-    });
+  When('post method save user is {string}', function(enzo) {
+      this.save(enzo = {
+        body: {
+          username: '',
+          password: 'testing321', 
+          firstName: 'Enzo',
+          lastName: 'Lizama',
+          enabled: 0
+        }
+      }, null);
+  });
 
-    Then('the user recieves the message {string}', function(expectedAnswer) {
-        expect(this.response).to.eql(expectedAnswer);
-    });
+  Then('the user recieves the message {string}', function(expectedAnswer) {
+      expect(this.response).to.eql(expectedAnswer);
+  });
 
-// Given("user password is empty", function(request) {
-//     this.setTo(request)
-// });
+Given("user password is {string}", function(diego) {
+    this.setRequest(diego)
+});
 
-//     When('post method "save user" is executed', function(request) {
-//         this.service.save(request)
-//     });
-
-//     Then('the user recieves the message {string}', function(expectedAnswer) {
-//         expect(this.response).to.eql(expectedAnswer)
-//     });
+  When('post method save users is {string}', function(diego) {
+      this.save(diego = {
+        body: {
+          username: 'diegosalas',
+          password: '', 
+          firstName: 'Diego',
+          lastName: 'Salas',
+          enabled: 0
+        }
+      }, null)
+  });
+  Then('the user recieves the messagesito {string}', function(expectedAnswer) {
+      expect(this.response).to.eql(expectedAnswer)
+  });
 
 // Given("contraseña contiene menos de 8 caracteres y/o no contenga un numero", function(request) {
 //     this.setTo(request)

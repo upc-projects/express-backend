@@ -3,15 +3,15 @@
 Feature: Registrar usuario
     As a user I need to register in order to manage my tasks
 
-Scenario: Registrar usuario
-    Given user name is empty
-    When post method "save user" is executed
+Scenario: Registrar usuario1
+    Given user name is "empty"
+    When post method save user is "executed"
     Then the user recieves the message "name is compulsory"
 
-# Scenario: Registrar usuario
-#     Given user password is empty
-#     When post method "save user" is executed
-#     Then the user recieves the message "password is compulsory"
+Scenario: Registrar usuario2
+    Given user password is "empty"
+    When post method save users is "executed"
+    Then the user recieves the messagesito "password is compulsory"
 
 # Scenario: Registrar usuario
 #     Given contraseña contiene menos de 8 caracteres y/o no contenga un numero 
