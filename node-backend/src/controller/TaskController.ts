@@ -8,9 +8,7 @@ export class TaskController {
     private taskRepository = getRepository(Task);
     private userRepository = getRepository(User);
 
-    //MISSING STH
     async save(request: Request, response: Response, next: NextFunction) {
-        console.log("Task saved");
         let {summary, acceptanceCriteria, status, createdBy, modifiedBy, limitDate, done} = request.body;
         let user = await this.userRepository.findOne(request.params.id);
         let task = new Task();
@@ -23,6 +21,7 @@ export class TaskController {
         task.limitDate = limitDate;
         task.done = done;
         task.user = user;
+        console.log("Task saved");
         return this.taskRepository.save(task);
     }
 
@@ -39,7 +38,6 @@ export class TaskController {
         return this.taskRepository.find();
     }
 
-    //MISSING STH
     async updateTask(request: Request, response: Response, next: NextFunction) {
         
         let taskToUpdate = await this.taskRepository.findOne(request.params.id);
