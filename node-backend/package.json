@@ -3,8 +3,12 @@
    "version": "0.0.1",
    "description": "Awesome project developed with TypeORM.",
    "devDependencies": {
-      "ts-node": "3.3.0",
+      "@types/chai": "^4.1.7",
+      "@types/cucumber": "^4.0.5",
       "@types/node": "^8.0.29",
+      "chai": "^4.2.0",
+      "cucumber": "^5.1.0",
+      "ts-node": "3.3.0",
       "typescript": "2.5.2"
    },
    "dependencies": {
@@ -23,9 +27,15 @@
       "mysql": "^2.14.1",
       "reflect-metadata": "^0.1.10",
       "ts-node-dev": "^1.0.0-pre.32",
-      "typeorm": "0.2.17"
+      "typeorm": "0.2.17",
+      "chai": "4.2.0",
+      "cucumber": "5.1.0",
+      "cucumber-html-reporter": "4.0.5"
    },
    "scripts": {
-      "start": "ts-node src/index.ts"
+      "start": "ts-node src/index.ts",
+      "test": "tsc && cucumber-js features/",
+      "cucumber": "./node_modules/.bin/cucumber-js features/**/*.feature --logLevel=error --require 'step-definitions/**/*.ts' --require 'hooks/**/*.ts'  --require-module ts-node/register --format-options '{\"snippetInterface\": \"async-await\"}' --format json:reports/cucumber-report.json --format summary",
+      "report": "node reporters/cucumber-html-reporter.js"
    }
 }
