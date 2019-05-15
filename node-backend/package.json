@@ -37,7 +37,9 @@
       "start": "ts-node src/index.ts",
       "test": "jest && cucumber-js",
       "cucumber": "./node_modules/.bin/cucumber-js features/**/*.feature --logLevel=error --require 'step-definitions/**/*.ts' --require 'hooks/**/*.ts'  --require-module ts-node/register --format-options '{\"snippetInterface\": \"async-await\"}' --format json:reports/cucumber-report.json --format summary",
-      "report": "node reporters/cucumber-html-reporter.js"
+      "report": "node reporters/cucumber-html-reporter.js",
+      "build" : "tsc",
+      "dropDb" : "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm query 'DROP TABLE task, user'"
    },
    "test": "jest"
 }
