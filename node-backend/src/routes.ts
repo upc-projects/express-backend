@@ -52,7 +52,7 @@ export const Routes = [{
     controller: TaskController,
     action: "removeTask"
 },{
-    method: "get",
+    method: "post",
     route: "/login",
     controller: UserController,
     action: "findByUsernameAndPassword"
