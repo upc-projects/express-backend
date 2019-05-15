@@ -8,9 +8,7 @@ export class TaskController {
     private taskRepository = getRepository(Task);
     private userRepository = getRepository(User);
 
-    //MISSING STH
     async save(request: Request, response: Response, next: NextFunction) {
-        console.log("Task saved");
         let {summary, acceptanceCriteria, status, createdBy, modifiedBy, limitDate, done} = request.body;
         let user = await this.userRepository.findOne(request.params.id);
         let task = new Task();
@@ -23,7 +21,11 @@ export class TaskController {
         task.limitDate = limitDate;
         task.done = done;
         task.user = user;
-        return this.taskRepository.save(task);
+
+        await this.taskRepository.save(task);
+        console.log("Task saved");
+        response.status(300).send("Task saved");
+        return;
     }
 
     async allTasksByUserId(request: Request, response: Response, next: NextFunction) {
@@ -39,19 +41,20 @@ export class TaskController {
         return this.taskRepository.find();
     }
 
-    //MISSING STH
     async updateTask(request: Request, response: Response, next: NextFunction) {
         
         let taskToUpdate = await this.taskRepository.findOne(request.params.id);
         await this.taskRepository.update(taskToUpdate,request.body);
-        console.log("Task update");
-
+        response.status(302).send("Task updated");
+        console.log("Task updated");
+        return;
     }
 
     async removeTask(request: Request, response: Response, next: NextFunction) {
         let taskToRemove = await this.taskRepository.findOne(request.params.id);
         await this.taskRepository.remove(taskToRemove);
-        console.log("Task delete");
-
+        response.status(301).send("Task removed");
+        console.log("Task removed");
+        return;
     }
 }
