@@ -14,6 +14,18 @@ export class UserController {
         return this.userRepository.findOne(request.params.id);
     }
 
+    async findByUsernameAndPassword(request: Request, response: Response, next: NextFunction){
+        let {username, password} = request.body;
+        let user = await this.userRepository.findOne({where:{username:username, password:password}});
+
+        if(user == null){
+            response.status(403).send("Username or password incorrect");
+            return;
+        }
+        console.log("User logged in")
+        return user;
+    }
+
     async save(request: Request, response: Response, next: NextFunction) {
         let {username, password} = request.body;
 
@@ -41,7 +53,7 @@ export class UserController {
         let userToRemove = await this.userRepository.findOne(request.params.id);
         await this.userRepository.remove(userToRemove);
         console.log("User deleted");
-        response.status(201).send("User deleted")
+        response.status(201).send("User deleted");
         return;
     }
 }
