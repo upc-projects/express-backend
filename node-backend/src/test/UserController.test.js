@@ -4,13 +4,13 @@ const proyectionDbMock = require('./proyectionDbMock')
 describe('Testing user controller', () => {
 
     beforeAll(() => {
-        dbMock = proyectionDbMock.dbMock
+        dbMock = proyectionDbMock.dbMockUser
     })
 
     test('Testing save method', () => {
         expect(user.save(dbMock[0], null, null)).toEqual({
             nombre: 'Enzo',
-            apellido: 'Lizamas'
+            apellido: 'Lizama'
         })
     })
 
