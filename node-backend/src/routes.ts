@@ -51,4 +51,9 @@ export const Routes = [{
     route: "/users/:userId/tasks/:taskId",
     controller: TaskController,
     action: "removeTask"
+},{
+    method: "post",
+    route: "/login",
+    controller: UserController,
+    action: "findByUsernameAndPassword"
 }];

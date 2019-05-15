@@ -1,36 +1,40 @@
 {
-  "name": "node-backend",
-  "version": "0.0.1",
-  "description": "Awesome project developed with TypeORM.",
-  "devDependencies": {
-    "@types/jest": "^24.0.13",
-    "@types/node": "^8.0.29",
-    "ts-jest": "^24.0.2",
-    "ts-node": "3.3.0",
-    "typescript": "2.5.2"
-  },
-  "dependencies": {
-    "@babel/types": "^7.4.4",
-    "@types/bcryptjs": "^2.4.2",
-    "@types/body-parser": "^1.17.0",
-    "@types/cors": "^2.8.4",
-    "@types/helmet": "0.0.43",
-    "@types/jsonwebtoken": "^8.3.2",
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.1",
-    "class-validator": "^0.9.1",
-    "cors": "^2.8.5",
-    "express": "^4.15.4",
-    "helmet": "^3.16.0",
-    "jsonwebtoken": "^8.5.1",
-    "mysql": "^2.14.1",
-    "reflect-metadata": "^0.1.10",
-    "ts-node-dev": "^1.0.0-pre.32",
-    "typeorm": "0.2.17"
-  },
-  "scripts": {
-    "start": "ts-node src/index.ts",
-    "test": "jest"
-  },
-  "test": "jest"
+   "name": "node-backend",
+   "version": "0.0.1",
+   "description": "Awesome project developed with TypeORM.",
+   "devDependencies": {
+      "@types/chai": "^4.1.7",
+      "@types/cucumber": "^4.0.5",
+      "@types/node": "^8.0.29",
+      "chai": "^4.2.0",
+      "codecov": "^3.5.0",
+      "cucumber": "^5.1.0",
+      "ts-node": "3.3.0",
+      "typescript": "2.5.2"
+   },
+   "dependencies": {
+      "@types/bcryptjs": "^2.4.2",
+      "@types/body-parser": "^1.17.0",
+      "@types/cors": "^2.8.4",
+      "@types/helmet": "0.0.43",
+      "@types/jsonwebtoken": "^8.3.2",
+      "bcryptjs": "^2.4.3",
+      "body-parser": "^1.18.1",
+      "class-validator": "^0.9.1",
+      "cors": "^2.8.5",
+      "express": "^4.15.4",
+      "helmet": "^3.16.0",
+      "jsonwebtoken": "^8.5.1",
+      "mysql": "^2.14.1",
+      "reflect-metadata": "^0.1.10",
+      "ts-node-dev": "^1.0.0-pre.32",
+      "typeorm": "0.2.17",
+      "cucumber-html-reporter": "4.0.5"
+   },
+   "scripts": {
+      "start": "ts-node src/index.ts",
+      "test": "cucumber-js",
+      "cucumber": "./node_modules/.bin/cucumber-js features/**/*.feature --logLevel=error --require 'step-definitions/**/*.ts' --require 'hooks/**/*.ts'  --require-module ts-node/register --format-options '{\"snippetInterface\": \"async-await\"}' --format json:reports/cucumber-report.json --format summary",
+      "report": "node reporters/cucumber-html-reporter.js"
+   }
 }

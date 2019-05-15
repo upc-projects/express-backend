@@ -21,8 +21,11 @@ export class TaskController {
         task.limitDate = limitDate;
         task.done = done;
         task.user = user;
+
+        await this.taskRepository.save(task);
         console.log("Task saved");
-        return this.taskRepository.save(task);
+        response.status(300).send("Task saved");
+        return;
     }
 
     async allTasksByUserId(request: Request, response: Response, next: NextFunction) {
@@ -42,14 +45,16 @@ export class TaskController {
         
         let taskToUpdate = await this.taskRepository.findOne(request.params.id);
         await this.taskRepository.update(taskToUpdate,request.body);
-        console.log("Task update");
-
+        response.status(302).send("Task updated");
+        console.log("Task updated");
+        return;
     }
 
     async removeTask(request: Request, response: Response, next: NextFunction) {
         let taskToRemove = await this.taskRepository.findOne(request.params.id);
         await this.taskRepository.remove(taskToRemove);
-        console.log("Task delete");
-
+        response.status(301).send("Task removed");
+        console.log("Task removed");
+        return;
     }
 }
