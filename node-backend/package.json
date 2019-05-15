@@ -3,12 +3,14 @@
   "version": "0.0.1",
   "description": "Awesome project developed with TypeORM.",
   "devDependencies": {
+    "@types/jest": "^24.0.13",
     "@types/node": "^8.0.29",
-    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2",
     "ts-node": "3.3.0",
     "typescript": "2.5.2"
   },
   "dependencies": {
+    "@babel/types": "^7.4.4",
     "@types/bcryptjs": "^2.4.2",
     "@types/body-parser": "^1.17.0",
     "@types/cors": "^2.8.4",
@@ -30,15 +32,5 @@
     "start": "ts-node src/index.ts",
     "test": "jest"
   },
-  "jest": {
-    "transform": {
-      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ]
-  }
+  "test": "jest"
 }
