@@ -2,13 +2,36 @@ const db = require('../dbconnection/connection');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+function validateEmail(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
+
 exports.userRegister = (req, res, next) => {
     const { username, password, confirmPassword } = req.body;
+    var message = {}
+    var sendMessage = false;
+
+    if (username == "") {
+        message["username"] = 'Email is required'
+        sendMessage = true;
+    }
+    if (!validateEmail(username) && username != "") {
+        message["username"] = 'Email needs to have correct format'
+        sendMessage = true;
+    }
+    if (password.length < 6) {
+        message["password"] = 'Password must be at least 6 characters'
+        sendMessage = true;
+    }
     if (password != confirmPassword) {
-        return res.status(409).json({
-            message: 'Passwords must match'
-        });
-    } else {
+        message["password"] = 'Passwords must match'
+        sendMessage = true;
+    } 
+    if (sendMessage) {
+        return res.status(400).json(message);
+    }
+    else {    
         bcrypt.hash(password, 10, (err, hash) => {
             if (err) {
                 return res.status(500).json({
@@ -33,12 +56,14 @@ exports.userRegister = (req, res, next) => {
 
 exports.userLogin = (req, res, next) => {
     const { username, password } = req.body;
+    var message = {}
+    
     db.select('*').from('users').where('username', username)
     .then(user => {
         bcrypt.compare(password, user[0].password, (error, result) => {
             if (error) {
                 return res.status(401).json({ 
-                    message: 'Auth failed'
+                    error
                 });  
             } 
             if (result) {
@@ -62,5 +87,24 @@ exports.userLogin = (req, res, next) => {
             });
         });
     })
-    .catch(err => res.status(400).json('Unable to register'));
+    .catch(err => {
+        if (username == "") {
+            message["username"] = 'Username cannot be blank'
+        }
+        if (password == "") {
+            message["password"] = 'Password cannot be blank'
+        }
+        if (username != "") {
+            message["username"] = 'Invalid Username'
+        }
+        if (!validateEmail(username) && username != "") {
+            message["username"] = 'Email needs to have correct format'
+            sendMessage = true;
+        }
+        if (password != "") {
+            message["password"] = 'Invalid Password'
+        }
+
+        res.status(400).json(message)
+    });
 }
