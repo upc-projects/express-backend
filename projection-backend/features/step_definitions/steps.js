@@ -1,29 +1,50 @@
 const { Given, When, Then } = require("cucumber");
 const { expect } = require("chai");
+const userController = require('../../api/controllers/userController');
 
 //REGISTRAR USUARIO
 
-Given("user name is {string}", function(enzo) {
-    this.setRequest(enzo);
+Given("user name is {string}", function(empty) { //username vacio
+    this.setRequest(empty);
 });
 
   When('post method save user is {string}', function(enzo) {
-      this.save(enzo = {
-        body: {
+
+    const usuario = {
+      body: {
           username: '',
-          password: 'testing321', 
-          firstName: 'Enzo',
-          lastName: 'Lizama',
-          enabled: 0
-        }
-      }, null);
+          password: 'testing321',
+          confirmPassword: 'testing321'
+      }
+    }
+
+    this.setUsuario(usuario.body.username);
+
+    let res = {
+      send: function(){ },
+      json: function(mes){
+        console.log(mes.username)
+      },
+      status: function(responseStatus) {
+          expect(responseStatus).to.eql(400);
+          return this; 
+      }
+    }
+
+    try {
+      userController.userRegister(usuario, res, null);
+      this.setMessage("");
+    } catch (err) {
+      console.log(err);
+    }
   });
 
   Then('the user recieves the message {string}', function(expectedAnswer) {
-      expect(this.response).to.eql(expectedAnswer);
+    console.log("mensajito", this.getMessage());
+    expect(this.getMessage()).to.eql(this.getUsuario());
   });
 
-Given("user password is {string}", function(diego) {
+Given("user password is {string}", function(diego) { //password vacio
     this.setRequest(diego)
 });
 
@@ -42,6 +63,47 @@ Given("user password is {string}", function(diego) {
       expect(this.response).to.eql(expectedAnswer)
   });
 
+
+// Guarda al usuario correctamente
+
+  Given("user name is {string}", function(empty) {
+    this.setRequest(empty);
+});
+
+  When('post method save user is {string}', function(enzo) {
+
+    const usuario = {
+      body: {
+          username: 'dominico@gmail.com',
+          password: 'testing321',
+          confirmPassword: 'testing321'
+      }
+    }
+
+    this.setUsuario(usuario.body.username);
+
+    let res = {
+      send: function(){ },
+      json: function(mes){
+        console.log(mes.username)
+      },
+      status: function(responseStatus) {
+          expect(responseStatus).to.eql(200);
+          return this; 
+      }
+    }
+    try {
+      userController.userRegister(usuario, res, null);
+      this.setMessage("dominico@gmail.com");
+    } catch (err) {
+      console.log(err);
+    }
+  });
+
+  Then('the user recieves the message {string}', function(expectedAnswer) {
+    console.log("mensajito", this.getMessage());
+    expect(this.getMessage()).to.eql(this.getUsuario());
+  });
 // Given("contraseña contiene menos de 8 caracteres y/o no contenga un numero", function(request) {
 //     this.setTo(request)
 // });

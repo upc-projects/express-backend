@@ -6,7 +6,7 @@ Feature: Registrar usuario
 Scenario: Registrar usuario1
     Given user name is "empty"
     When post method save user is "executed"
-    Then the user recieves the message "name is compulsory"
+    Then the user recieves the message "Email is required"
 
 Scenario: Registrar usuario2
     Given user password is "empty"
