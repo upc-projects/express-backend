@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const validateEmail = require('../utils/validateEmail');
+const user = require('../utils/session');
 
 exports.userRegister = (req, res, next) => {
     const { username, password, confirmPassword } = req.body;
@@ -17,8 +18,12 @@ exports.userRegister = (req, res, next) => {
         message["username"] = 'Email needs to have correct format'
         sendMessage = true;
     }
-    if (password.length < 6) {
+    if (password.length < 6 && password != "") {
         message["password"] = 'Password must be at least 6 characters'
+        sendMessage = true;
+    }
+    if (password == "") {
+        message["password"] = 'Password must not be empty'
         sendMessage = true;
     }
     if (password != confirmPassword) {
@@ -104,4 +109,38 @@ exports.userLogin = (req, res, next) => {
 
         res.status(400).json(message)
     });
+}
+
+exports.userDelete = (req, res, next) => {
+    if (typeof req === 'number') {
+        db('users').where({
+            'id': req
+        }).del()
+        .then(respose => {
+            res.status(200).json({
+                message: 'User deleted'
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+    } else {
+        db('users').where({
+            'id': user(req)
+        }).del()
+        .then(respose => {
+            res.status(200).json({
+                message: 'User deleted'
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+    }
 }

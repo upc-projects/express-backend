@@ -4,11 +4,13 @@ const userController = require('../../api/controllers/userController');
 
 //REGISTRAR USUARIO
 
-Given("user name is {string}", function(empty) { //username vacio
+//Scenario: Registrar usuario1: username vacio
+
+Given("user name is {string}", function(empty) { 
     this.setRequest(empty);
 });
 
-  When('post method save user is {string}', function(enzo) {
+  When('1 post method save user is {string}', function(enzo) {
 
     const usuario = {
       body: {
@@ -18,59 +20,94 @@ Given("user name is {string}", function(empty) { //username vacio
       }
     }
 
-    this.setUsuario(usuario.body.username);
+    this.setUsuario(usuario.body);
 
-    let res = {
-      send: function(){ },
-      json: function(mes){
-        console.log(mes.username)
-      },
-      status: function(responseStatus) {
-          expect(responseStatus).to.eql(400);
-          return this; 
-      }
-    }
+    this.setRes(400)
 
     try {
-      userController.userRegister(usuario, res, null);
-      this.setMessage("");
+      userController.userRegister(usuario, this.getRes(), null);
+      this.setMessage("Email is required");
     } catch (err) {
       console.log(err);
     }
   });
 
-  Then('the user recieves the message {string}', function(expectedAnswer) {
-    console.log("mensajito", this.getMessage());
-    expect(this.getMessage()).to.eql(this.getUsuario());
+  Then('1 the user recieves the message {string}', function(expectedAnswer) {
+    // console.log("mensajito", this.getMessage());
+    expect(this.getMessage()).to.eql(expectedAnswer);
   });
 
-Given("user password is {string}", function(diego) { //password vacio
-    this.setRequest(diego)
+// Scenario: Registrar usuario2: password vacio
+
+Given("user password is {string}", function(empty) { 
+    this.setRequest(empty)
 });
 
-  When('post method save users is {string}', function(diego) {
-      this.save(diego = {
+  When('2 post method save users is {string}', function(diego) {
+    const usuario = {
+      body: {
+          username: 'test@gmail.com',
+          password: '',
+          confirmPassword: ''
+      }
+    }
+
+    this.setUsuario(usuario.body);
+
+    this.setRes(400)
+
+    try {
+      userController.userRegister(usuario, this.getRes(), null);
+      this.setMessage("Password must not be empty");
+    } catch (err) {
+      console.log(err);
+    }
+  });
+
+  Then('2 the user recieves the message {string}', function(expectedAnswer) {
+      expect(this.getMessage()).to.eql(expectedAnswer)
+  });
+
+// Scenario: Registrar usuario3: password formato incorrecto
+
+Given("contraseña contiene menos de ocho caracteres y / o no contenga un {string}", function(empty) { 
+  this.setRequest(empty)
+});
+
+    When('3 se ejecuta metodo post {string}', function(request) {
+      const usuario = {
         body: {
-          username: 'diegosalas',
-          password: '', 
-          firstName: 'Diego',
-          lastName: 'Salas',
-          enabled: 0
+            username: 'dominico@gmail.com',
+            password: 'test',
+            confirmPassword: 'test'
         }
-      }, null)
-  });
-  Then('the user recieves the messagesito {string}', function(expectedAnswer) {
-      expect(this.response).to.eql(expectedAnswer)
-  });
+      }
+  
+      this.setUsuario(usuario.body);
+  
+      this.setRes(400)
+  
+      try {
+        userController.userRegister(usuario, this.getRes(), null);
+        this.setMessage("Password must be at least 6 characters");
+      } catch (err) {
+        console.log(err);
+      }
+    });
 
 
-// Guarda al usuario correctamente
+    Then('3 recibe el mensaje de error {string}', function(expectedAnswer) {
+        expect(this.getMessage()).to.eql(expectedAnswer)
+    });
 
-  Given("user name is {string}", function(empty) {
-    this.setRequest(empty);
+
+// Scenario: Registrar usuario4: Guarda al usuario correctamente
+
+Given("ingresa los 3 campos {string}", function(full) {
+  this.setRequest(full)
 });
 
-  When('post method save user is {string}', function(enzo) {
+  When('4 se ejecuta metodo post {string}', function(enzo) {
 
     const usuario = {
       body: {
@@ -80,97 +117,48 @@ Given("user password is {string}", function(diego) { //password vacio
       }
     }
 
-    this.setUsuario(usuario.body.username);
+    this.setUsuario(usuario.body);
 
-    let res = {
-      send: function(){ },
-      json: function(mes){
-        console.log(mes.username)
-      },
-      status: function(responseStatus) {
-          expect(responseStatus).to.eql(200);
-          return this; 
-      }
-    }
+    this.setRes(200)
+
     try {
-      userController.userRegister(usuario, res, null);
-      this.setMessage("dominico@gmail.com");
+      userController.userRegister(usuario, this.getRes(), null);
+      this.setMessage("created");
     } catch (err) {
       console.log(err);
     }
   });
 
-  Then('the user recieves the message {string}', function(expectedAnswer) {
-    console.log("mensajito", this.getMessage());
-    expect(this.getMessage()).to.eql(this.getUsuario());
+  Then('4 recibe response status 200 {string}', function(expectedAnswer) {
+    expect(this.getMessage()).to.eql(expectedAnswer);
   });
-// Given("contraseña contiene menos de 8 caracteres y/o no contenga un numero", function(request) {
-//     this.setTo(request)
-// });
 
-//     When('se ejecuta metodo post "guardar usuario"', function(request) {
-//         this.service.save(request)
-//     });
+// FIN REGISTRAR USUARIO
 
-//     Then('recibe el mensaje de error {string}', function(expectedAnswer) {
-//         expect(this.response).to.eql(expectedAnswer)
-//     });
+// INICIO ELIMINAR USUARIO
 
-// Given("correo electronico es vacio", function(request) {
-//     this.setTo(request)
-// });
+// Scenario: Eliminar usuario5: Elimina usuario
 
-//     When('se ejecuta metodo post "guardar usuario"', function(request) {
-//         this.service.save(request)
-//     });
+Given("mensaje {string}", function(message) {
+    this.setRequest(message)
+});
 
-//     Then('recibe el mensaje de error {string}', function(expectedAnswer) {
-//         expect(this.response).to.eql(expectedAnswer)
-//     });
+    When('5 se ejecuta metodo delete {string}', function(request) {
+        const id = 109;
 
-// Given("ingresa los 3 campos correctamente", function(request) {
-//     this.setTo(request)
-// });
+        this.setRes(200)
 
-//     When('se ejecuta metodo post "guardar usuario"', function(request) {
-//         this.service.save(request)
-//     });
+        try {
+          userController.userDelete(id, this.getRes(), null);
+          this.setMessage("User deleted");
+        } catch (err) {
+          console.log(err);
+        }
+    });
 
-//     Then('recibe response status 201 {string}', function(expectedAnswer) {
-//         expect(this.response).to.eql(expectedAnswer)
-//     });
-
-// // FIN REGISTRAR USUARIO
-
-// // INICIO ELIMINAR USUARIO
-
-// Given("un usuario existente {int}", function(number) {
-//     this.setTo(number)
-// });
-
-//     When('hace click en "eliminar"', function(request) {
-//         console.log("procesando");
-//     });
-
-//     Then('se muestra mensaje {string}', function(expectedAnswer) {
-//         expect(this.response).to.eql(expectedAnswer)
-//     });
-
-// Given("mensaje {string}", function(message) {
-//     this.setTo(message)
-// });
-
-//     When('hace click en "confirmar"', function(request) {
-//         console.log("procesando");
-//     });
-
-//     And('se ejecuta metodo delete "eliminar usuario"', function(request) {
-//         console.log("procesando");
-//     });
-
-//     Then('recibe response status 200  {string}', function(expectedAnswer) {
-//         expect(this.response).to.eql(expectedAnswer)
-//     });
+    Then('5 recibe response status 200 {string}', function(expectedAnswer) {
+        expect(this.getMessage()).to.eql(expectedAnswer)
+    });
 
 // // FIN ELIMINAR USUARIO
 

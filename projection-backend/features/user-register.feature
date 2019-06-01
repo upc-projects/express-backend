@@ -5,60 +5,37 @@ Feature: Registrar usuario
 
 Scenario: Registrar usuario1
     Given user name is "empty"
-    When post method save user is "executed"
-    Then the user recieves the message "Email is required"
+    When 1 post method save user is "executed"
+    Then 1 the user recieves the message "Email is required"
 
 Scenario: Registrar usuario2
     Given user password is "empty"
-    When post method save users is "executed"
-    Then the user recieves the messagesito "password is compulsory"
+    When 2 post method save users is "executed"
+    Then 2 the user recieves the message "Password must not be empty"
 
-# Scenario: Registrar usuario
-#     Given contraseña contiene menos de 8 caracteres y/o no contenga un numero 
-#     When se ejecuta metodo post "guardar usuario"  
-#     Then recibe el mensaje de error "La contrasena debe contener al menos un número y 8 caracteres"
+Scenario: Registrar usuario3
+    Given contraseña contiene menos de ocho caracteres y / o no contenga un "numero" 
+    When 3 se ejecuta metodo post "guardar usuario"  
+    Then 3 recibe el mensaje de error "Password must be at least 6 characters"
 
-# Scenario: Registrar usuario
-#     Given correo electronico es vacio 
-#     When se ejecuta metodo post "guardar usuario"
-#     Then recibe el mensaje de error "Correo electronico es obligatorio"
+Scenario: Registrar usuario4
+    Given ingresa los 3 campos "correctamente"
+    When 4 se ejecuta metodo post "guardar usuario"
+    Then 4 recibe response status 200 "created"
 
-# Scenario: Registrar usuario
-#     Given ingresa los 3 campos correctamente
-#     When se ejecuta metodo post "guardar usuario"
-#     Then recibe response status 201 "created"
-
-# # FIN REGISTRAR USUARIO
-
-# # INICIO ELIMINAR USUARIO
-
-# Feature: Eliminar usuario
-#     As a user I need to delete my account in order to stop using the application
-
-# Scenario: Eliminar usuario
-#     Given un usuario existente 1
-#     When hace click en "eliminar"
-#     Then se muestra mensaje "¿Seguro que desea eliminar su cuenta?"
-    
-# Scenario: Eliminar usuario
-#     Given mensaje "¿Seguro que desea eliminar su cuenta"
-#     When hace click en "confirmar"
-#     And se ejecuta metodo delete "eliminar usuario"
-#     Then recibe response status 200 "cuenta eliminada"
-
-# # FIN ELIMINAR USUARIO
+# FIN REGISTRAR USUARIO
 
 # # INICIO RESGISTRAR TAREA
 
 # Feature: Registrar tarea
 #     As a user I need to register a task in order to manage my tasks
 
-# Scenario: Eliminar usuario
+# Scenario: Eliminar tarea
 #     Given nombre de tarea es vacio 
 #     When se ejecuta metodo post "guardar tarea"
 #     Then recibe el mensaje de error "Nombre de tarea es obligatorio"
 
-# Scenario: Eliminar usuario
+# Scenario: Eliminar tarea
 #     Given nombre de tarea tenga valor diferente a vacio 
 #     When se ejecuta metodo post "guardar tarea"
 #     Then recibe response status 201 "tarea guardada"
