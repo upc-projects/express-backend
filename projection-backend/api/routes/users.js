@@ -7,4 +7,6 @@ router.post('/register', userController.userRegister);
 
 router.post('/login', userController.userLogin);
 
+router.delete('/', userController.userDelete);
+
 module.exports = router;
