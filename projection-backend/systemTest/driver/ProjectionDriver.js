@@ -1,5 +1,9 @@
-var webdriver = require('selenium-webdriver')
+var webdriver = require('selenium-webdriver');
+    
 var chrome = require('selenium-webdriver/chrome');
+var o = new chrome.Options();
+o.addArguments('disable-infobars');
+
 var path = require('chromedriver').path;
 
 var service = new chrome.ServiceBuilder(path).build();
@@ -8,23 +12,24 @@ chrome.setDefaultService(service);
 class ProjectionDriver {
 
     static inicializarWebDriver(navegador) {
-        this.webDriver = null;
+        this.driver = null;
         try {
             switch(navegador) {
                 case "firefox": //needs fixing
-                    this.webDriver = new webdriver.Builder()
+                this.driver = new webdriver.Builder()
                     .forBrowser('firefox')
                     .build(); break;
                 case "chrome":
-                    this.webDriver = new webdriver.Builder()
+                this.driver = new webdriver.Builder()
                     .withCapabilities(webdriver.Capabilities.chrome())
+                    .setChromeOptions(o)
                     .build(); break;  
             }
         } catch (err) {
             console.log(err);
         }
 
-        return this.webDriver;
+        return this.driver;
     }
 
     static cerrarPagina(webDriver) {
