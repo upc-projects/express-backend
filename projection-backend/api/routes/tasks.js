@@ -4,12 +4,12 @@ const checkAuth = require('../middleware/check-auth');
 
 const taskController = require('../controllers/taskController');
 
-router.post('/', taskController.taskPostOrUpdate);
+router.post('/', checkAuth, taskController.taskPostOrUpdate);
 
-router.get('/all', taskController.taskGetAll);
+router.get('/all', checkAuth, taskController.taskGetAll);
 
-router.get('/:id', taskController.taskGetOne);
+router.get('/:id', checkAuth, taskController.taskGetOne);
 
-router.delete('/:id', taskController.taskDeleteOne);
+router.delete('/:id', checkAuth, taskController.taskDeleteOne);
 
 module.exports = router;

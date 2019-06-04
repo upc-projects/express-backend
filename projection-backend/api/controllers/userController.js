@@ -50,7 +50,10 @@ exports.userRegister = (req, res, next) => {
             .then(user => {
                 res.json(user[0]); //return the object not the array
             })
-            .catch(err => res.status(400).json('Unable to register'));
+            .catch(err => { 
+                message["username"] = 'Email already exists'
+                return res.status(400).json(message)
+                });
             }
         });
     }
