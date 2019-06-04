@@ -1,0 +1,11 @@
+browser, url, firstname, lastname, email, password, confirmPassword
+chrome,http://localhost:3000/register,Dominic,Toretto,,testing321,testing321
+chrome,http://localhost:3000/register,Dominic,Toretto,dominicsc2hs@gmail.com,testing321,testing321
+chrome,http://localhost:3000/register,Dominic,Toretto,dominicsc2hsgmail.com,testing321,testing321
+chrome,http://localhost:3000/register,Dominic,Toretto,dominicsc2hs@gmail.com,test,test
+chrome,http://localhost:3000/register,Dominic,Toretto,dominicsc2hs@gmail.com,,,
+chrome,http://localhost:3000/register,Dominic,Toretto,dominicsc2hs@gmail.com,test,testing
+chrome,http://localhost:3000/,,testing
+chrome,http://localhost:3000/,dominic,,
+chrome,http://localhost:3000/,dominicsc2hs@ggmail.com,testing
+chrome,http://localhost:3000/,dominicgmail.com,testing
