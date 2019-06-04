@@ -25,52 +25,6 @@ Scenario: Registrar usuario4
 
 # FIN REGISTRAR USUARIO
 
-# # INICIO RESGISTRAR TAREA
-
-# Feature: Registrar tarea
-#     As a user I need to register a task in order to manage my tasks
-
-# Scenario: Eliminar tarea
-#     Given nombre de tarea es vacio 
-#     When se ejecuta metodo post "guardar tarea"
-#     Then recibe el mensaje de error "Nombre de tarea es obligatorio"
-
-# Scenario: Eliminar tarea
-#     Given nombre de tarea tenga valor diferente a vacio 
-#     When se ejecuta metodo post "guardar tarea"
-#     Then recibe response status 201 "tarea guardada"
-
-# # FIN REGISTRAR TAREA
-
-# # INICIO ACTUALIZAR TAREA
-
-# Feature: Actualizar tarea
-#     As a user I need to update a task in order to manage my tasks
-
-# Scenario: Actualizar tarea
-#     Given estado de tarea ha cambiado
-#     When se ejecuta metodo put "Actualizar tarea"
-#     Then  recibe response status 201 "se guardo tarea"
-
-# # FIN ACTUALIZAR TAREA
-
-# # INICIO LISTAR TAREA
-
-# Feature: Listar tarea
-#     As a user I need to list a task in order to manage my tasks
-
-# Scenario: Listar tarea
-#     Given usuario existente con tareas asignadas
-#     When se ejecuta metodo get "Listar tareas"
-#     Then  recibe response status 200 "tareas obtenidas"
-
-# Scenario: Listar tarea
-#     Given usuario existente sin tareas asignadas
-#     When se ejecuta metodo get "Listar tareas"
-#     Then  recibe response status 200 "No hay tareas disponibles"
-
-# # FIN LISTAR TAREA
-
 # # INICIO ELIMINAR TAREAS
 
 # Feature: Elimninar tareas

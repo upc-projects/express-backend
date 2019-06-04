@@ -1,6 +1,7 @@
 const { Given, When, Then } = require("cucumber");
 const { expect } = require("chai");
 const userController = require('../../api/controllers/userController');
+const taskController = require('../../api/controllers/taskController');
 
 //REGISTRAR USUARIO
 
@@ -144,7 +145,7 @@ Given("mensaje {string}", function(message) {
 });
 
     When('5 se ejecuta metodo delete {string}', function(request) {
-        const id = 109;
+        const id = 1;
 
         this.setRes(200)
 
@@ -162,75 +163,140 @@ Given("mensaje {string}", function(message) {
 
 // // FIN ELIMINAR USUARIO
 
-// // INICIO RESGISTRAR TAREA
+// INICIO REGISTRAR TAREA
 
-// Given("nombre de tarea es vacio", function(request) {
-//     this.setTo(request)
-// });
+// Scenario: Registrar tarea1: summary vacio
+  Given("nombre de tarea es {string}", function(empty) {
+      this.setRequest(empty)
+  });
 
-//     When('se ejecuta metodo post "guardar tarea"', function(request) {
-//         console.log("procesando");
-//     });
+     When('1 se ejecuta metodo post {string}', function(request) {
+      const tarea = {
+        body: {
+            id:'1',
+            summary: '',
+            acceptanceCriteria: 'acceptanceCriteria',
+            status: '1',
+            limitDate:'2019-06-18'
+        }
+      }
+  
+      this.setUsuario(tarea.body);
+  
+      this.setRes(400)
+  
+      try {
+        taskController.taskPostOrUpdate(tarea, this.getRes(), null);
+        this.setMessage("Nombre de tarea es obligatorio");
+      } catch (err) {
+        console.log(err);
+      }
+     });
 
-//     Then('recibe el mensaje de error {string}', function(expectedAnswer) {
-//         expect(this.response).to.eql(expectedAnswer)
-//     });
+     Then('1 recibe el mensaje de error {string}', function(expectedAnswer) {
+         expect(this.getMessage()).to.eql(expectedAnswer)
+     });
 
-// Given("nombre de tarea tenga valor diferente a vacio", function(request) {
-//     this.setTo(request)
-// });
-
-//     When('se ejecuta metodo post "guardar tarea"', function(request) {
-//         console.log("procesando");
-//     });
-
-//     Then('recibe response status 201 {string}', function(expectedAnswer) {
-//         expect(this.response).to.eql(expectedAnswer)
-//     });
+// Scenario: Registrar tarea2: Guarda la tarea correctamente
+  Given("nombre de tarea tenga valor diferente a {string}", function(full) {
+      this.setRequest(full)
+  });
+      When('2 se ejecuta metodo post {string}', function(request) {
+        const tarea = {
+          body: {
+              id:'2',
+              summary: 'Pantalla de Login',
+              acceptanceCriteria: 'acceptanceCriteria',
+              status: '1',
+              limitDate:'2019-06-18'
+          }
+        }
+        this.setUsuario(tarea.body);
+        this.setRes(201)
+    
+        try {
+          taskController.taskPostOrUpdate(tarea, this.getRes(), null);
+          this.setMessage("tarea guardada");
+        } catch (err) {
+          console.log(err);
+        }
+      });
+      Then('2 recibe response status 201 {string}', function(expectedAnswer) {
+        expect(this.getMessage()).to.eql(expectedAnswer)
+      });
 
 // // FIN REGISTRAR TAREA
 
 // // INICIO ACTUALIZAR TAREA
 
-// Given("estado de tarea ha cambiado", function(request) {
-//     this.setTo(request)
-// });
+Given("estado de tarea ha {string}", function(request) {
+  this.setRequest(request)
+});
 
-//     When('se ejecuta metodo put "Actualizar tarea"', function(request) {
-//         console.log("procesando");
-//     });
+    When('1 se ejecuta metodo put {string}', function(request) {
+      const tarea = {
+        body: {
+            id:'2',
+            summary: 'Pantalla de Register',
+            acceptanceCriteria: 'acceptanceCriteria',
+            status: '1',
+            limitDate:'2019-06-18'
+        }
+      }
+      this.setUsuario(tarea.body);
+      this.setRes(201)
 
-//     Then('recibe response status 201 {string}', function(expectedAnswer) {
-//         expect(this.response).to.eql(expectedAnswer)
-//     });
+      try {
+        taskController.taskPostOrUpdate(tarea, this.getRes(), null);
+        this.setMessage("se guardo tarea");
+      } catch (err) {
+        console.log(err);
+      }
+    });
+
+    Then('1 recibe response status 201 {string}', function(expectedAnswer) {
+      expect(this.getMessage()).to.eql(expectedAnswer)
+    });
 
 // // FIN ACTUALIZAR TAREA
 
 // // INICIO LISTAR TAREA
 
-// Given("usuario existente con tareas asignadas", function(request) {
-//     this.setTo(request)
-// });
+//Listar tareas con usuario existente
+Given("usuario existente con {string}", function(request) {
+  this.setRequest(request)
+});
+    When('1 se ejecuta metodo get {string}', function(request) {
+      this.setMessage("tareas obtenidas");
+      try {
+        id=1;
+        taskController.taskGetAll(id, this.getRes(), null);
+        this.setRes(200)
+      } catch (err) {
+        console.log(err);
+      }
+    });
+    Then('1 recibe response status 200 {string}', function(expectedAnswer) {
+        expect(this.getMessage()).to.eql(expectedAnswer)
+    });
 
-//     When('se ejecuta metodo get "Listar tareas"', function(request) {
-//         console.log("procesando");
-//     });
 
-//     Then(' recibe response status 200 {string}', function(expectedAnswer) {
-//         expect(this.response).to.eql(expectedAnswer)
-//     });
-
-// Given("usuario existente sin tareas asignadas", function(request) {
-//     this.setTo(request)
-// });
-
-//     When('se ejecuta metodo get "Listar tareas"', function(request) {
-//         console.log("procesando");
-//     });
-
-//     Then('recibe response status 200 {string}', function(expectedAnswer) {
-//         expect(this.response).to.eql(expectedAnswer)
-//     });
+//Listar tareas sin usuario existente
+Given("usuario existente sin {string}", function(request) {
+  this.setRequest(request)
+});
+    When('2 se ejecuta metodo get {string}', function(request) {
+      this.setMessage("No hay tareas disponibles");
+      try {
+        taskController.taskGetAll(null, this.getRes(), null);
+        this.setRes(200)
+      } catch (err) {
+        console.log(err);
+      }
+    });
+    Then('2 recibe response status 200 {string}', function(expectedAnswer) {
+      expect(this.getMessage()).to.eql(expectedAnswer)
+    });
 
 // // FIN LISTAR TAREA
 
