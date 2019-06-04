@@ -6,8 +6,8 @@ const assert = require('assert');
 class IniciarSesionPage {
     constructor(pagina) {
         this.webDriver = pagina;
-        this.cajaUsuarios = By.name('loginUsername');
-        this.cajaClave = By.name('loginPassword');
+        this.cajaUsuarios = By.name('username');
+        this.cajaClave = By.name('password');
         this.botonIniciarSesion = By.name('loginBtn');
         this.mensajeEmail = By.xpath('//*[@id="root"]/div/div/div/div/div/form/div[1]/div');
         this.mensajePassword = By.xpath('//*[@id="root"]/div/div/div/div/div/form/div[2]/div')
