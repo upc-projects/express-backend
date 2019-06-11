@@ -1,7 +1,7 @@
 const { setWorldConstructor } = require("cucumber");
 const { expect } = require("chai");
 
-class User {
+class Task{
   setRequest(request) {
     if (request == "empty") {
       this.requestito = "";
@@ -17,12 +17,12 @@ class User {
     return this.message;
   }
 
-  setUsuario(usuario) {
-    this.usuario = usuario;
+  setTarea(tarea) {
+    this.tarea = tarea;
   }
 
-  getUsuario() {
-    return this.usuario;
+  getTarea() {
+    return this.tarea;
   }
 
   setRes(statusExpected) {
@@ -42,6 +42,5 @@ class User {
   getRes() {
     return this.res;
   }
-} 
-
-setWorldConstructor(User);
+}
+setWorldConstructor(Task);
