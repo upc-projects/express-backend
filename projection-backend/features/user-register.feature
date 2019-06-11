@@ -25,23 +25,7 @@ Scenario: Registrar usuario4
 
 # FIN REGISTRAR USUARIO
 
-# # INICIO ELIMINAR TAREAS
 
-# Feature: Elimninar tareas
-#     As a user I need to delete a task in order to manage my tasks
-
-# Scenario: Elimninar tareas
-#     Given usuario existente con tareas asignadas 
-#     When hace click en "eliminar tarea"
-#     Then recibe mensaje "¿Desea eliminar esta tarea?"
-
-# Scenario: Elimninar tareas
-#     Given mensaje "¿Desea eliminar esta tarea?""
-#     When hace click en confirmar
-#     And se ejecute metodo delete "eliminar tarea"
-#     Then recibe response status 200 "tarea eliminada"
-
-# # FIN ELIMINAR TAREAS  
 
 
 

@@ -19,7 +19,7 @@ exports.taskPostOrUpdate = (req, res, next) => {
                 summary: summary,
                 acceptanceCriteria: acceptanceCriteria,
                 status: status,
-                limitDate: limitDate,
+                limitDate: limitDate
             })
             .then(respose => {
                 res.status(200).json({
@@ -35,7 +35,7 @@ exports.taskPostOrUpdate = (req, res, next) => {
             acceptanceCriteria: acceptanceCriteria,
             status: status,
             limitDate: limitDate,
-            user_id: user(req)
+            user_id: user(next)
             })
             .then(task => {
                 res.json(task[0]); //return the object not the array
@@ -66,8 +66,8 @@ exports.taskGetOne = (req, res, next) => {
 
 exports.taskDeleteOne = (req, res, next) => {
     db('tasks').where({
-        'id': req.params.id,
-        'user_id': user(req)
+        'id': req.body.id,
+        'user_id': user(next)
     }).del()
     .then(respose => {
         res.status(200).json({

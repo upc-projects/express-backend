@@ -19,14 +19,14 @@
     "selenium-webdriver": "^4.0.0-alpha.1"
   },
   "devDependencies": {
-    "nodemon": "^1.19.1",
     "@types/chai": "^4.1.7",
     "@types/cucumber": "^4.0.5",
     "@types/node": "^8.0.29",
     "chai": "^4.2.0",
     "codecov": "^3.5.0",
     "cucumber": "^5.1.0",
-    "jest": "^24.8.0"
+    "jest": "^24.8.0",
+    "nodemon": "^1.19.1"
   },
   "scripts": {
     "start": "nodemon server.js",
