@@ -12,11 +12,13 @@
     "chromedriver": "^74.0.0",
     "cors": "^2.8.4",
     "express": "^4.17.1",
+    "fast-csv": "^2.5.0",
     "geckodriver": "^1.16.2",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.16.5",
+    "mocha": "^6.1.4",
     "pg": "^7.11.0",
-    "selenium-webdriver": "^4.0.0-alpha.1"
+    "selenium-webdriver": "^3.6.0"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
@@ -26,6 +28,7 @@
     "codecov": "^3.5.0",
     "cucumber": "^5.1.0",
     "jest": "^24.8.0",
+    "mochawesome": "^3.1.2",
     "nodemon": "^1.19.1"
   },
   "scripts": {
