@@ -1,5 +1,6 @@
 const RegistrarPage = require('../systemTest/page/RegistrarPage').RegistrarPage;
 const IniciarSesionPage = require('../systemTest/page/IniciarSesionPage').IniciarSesionPage;
+const TareaPage = require('../systemTest/page/TareaPage').TareaPage;
 const { describe, it, after, before } = require('selenium-webdriver/testing');
 const dataArr = require('./dataRead');
 
@@ -82,4 +83,76 @@ describe('Projection: user login scenarios', function() {
         iniciarSesionPage.iniciarSesion(dataArr[10][2], dataArr[10][3], 'Email needs to have correct format', '');
     });
     
+});
+
+describe('Projection: register task scenarios', function() {
+    this.timeout(50000);
+    beforeEach(function() {
+        registrarPage = new RegistrarPage(dataArr[1][0]);
+        tareaPage = new TareaPage(registrarPage.obtenerPagina());
+    });
+
+    afterEach(function() {
+        tareaPage.cerrarPagina();
+    });
+
+    it('register task: summary cannot be blank', function() {
+        registrarPage.ingresarpagina(dataArr[11][1]);
+        tareaPage.iniciarSesion(dataArr[11][2], dataArr[11][3]);
+        tareaPage.registrarTarea('', dataArr[11][5], dataArr[11][6], dataArr[11][7],'Summary cannot be blank');
+    });
+    
+    it('register task: register completed', function() {
+        registrarPage.ingresarpagina(dataArr[12][1]);
+        tareaPage.iniciarSesion(dataArr[12][2], dataArr[12][3]);
+        tareaPage.registrarTarea(dataArr[12][4], dataArr[12][5], dataArr[12][6], dataArr[12][7],'');
+    });
+
+    
+});
+describe('Projection: update task scenarios', function() {
+    this.timeout(50000);
+    beforeEach(function() {
+        registrarPage = new RegistrarPage(dataArr[1][0]);
+        tareaPage = new TareaPage(registrarPage.obtenerPagina());
+    });
+
+    afterEach(function() {
+        tareaPage.cerrarPagina();
+    });
+
+    it('update task: update completed', function() {
+        registrarPage.ingresarpagina(dataArr[13][1]);
+        tareaPage.iniciarSesion(dataArr[13][2], dataArr[13][3]);
+        tareaPage.actualizarTarea(dataArr[13][4], dataArr[13][5], dataArr[13][6], dataArr[13][7]);
+    });
+
+    it('update task: change status', function() {
+        registrarPage.ingresarpagina(dataArr[14][1]);
+        tareaPage.iniciarSesion(dataArr[14][2], dataArr[14][3]);
+        tareaPage.cambiarEstado();
+    });
+
+});
+
+describe('Projection: delete task scenarios', function() {
+    this.timeout(50000);
+    beforeEach(function() {
+        registrarPage = new RegistrarPage(dataArr[1][0]);
+        tareaPage = new TareaPage(registrarPage.obtenerPagina());
+    });
+
+    afterEach(function() {
+        tareaPage.cerrarPagina();
+    });
+    it('update task: deleted completed', function() {
+        registrarPage.ingresarpagina(dataArr[13][1]);
+        tareaPage.iniciarSesion(dataArr[13][2], dataArr[13][3]);
+        tareaPage.eliminarTarea();
+    });
+    it('update task: deleted completed', function() {
+        registrarPage.ingresarpagina(dataArr[14][1]);
+        tareaPage.iniciarSesion(dataArr[14][2], dataArr[14][3]);
+        tareaPage.tareaTerminada();
+    });
 });

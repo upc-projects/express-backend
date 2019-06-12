@@ -14,6 +14,7 @@ class IniciarSesionPage {
         this.MAX_TIEMPO = 1000;
     }
 
+
     iniciarSesion(usuario, clave, emailExpect, passwordExpect) {
         this.webDriver.findElement(this.cajaUsuarios).clear();
         this.webDriver.findElement(this.cajaUsuarios).sendKeys(usuario);

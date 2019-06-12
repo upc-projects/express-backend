@@ -208,14 +208,16 @@ Given("mensaje {string}", function(message) {
             acceptanceCriteria: 'acceptanceCriteria',
             status: '1',
             limitDate:'2019-06-18'
+          },
+          user:{
+            id:1
           }
         }
-        user_id=1;
         this.setUsuario(tarea.body);
         this.setRes(201)
     
         try {
-          taskController.taskPostOrUpdate(tarea, this.getRes(), user_id);
+          taskController.taskPostOrUpdate(tarea, this.getRes(), null);
           this.setMessage("Tarea guardada");
         } catch (err) {
           console.log(err);
@@ -319,7 +321,7 @@ Given("usuario existente sin {string}", function(request) {
 //Descomentar y cambiar el id
 
 //Ejecuta el metodo eliminar
-/*
+
  Given("2 mensaje {string}", function(message) {
   this.setRequest(message)
  });
@@ -327,18 +329,21 @@ Given("usuario existente sin {string}", function(request) {
       console.log("procesando");
       user_id=1
       const tarea = {
-        body: {
-            id:2,
+        params: {
+            id:3,
             summary: 'Pantalla de Login',
             acceptanceCriteria: 'acceptanceCriteria',
             status: '1',
             limitDate:'2019-06-18'
+        },
+        user:{
+            id:1
         }
       }
       this.setUsuario(tarea.body);
       this.setRes(200)
       try {
-        taskController.taskDeleteOne(tarea, this.getRes(), user_id);
+        taskController.taskDeleteOne(tarea, this.getRes(), null);
         this.setMessage("tarea eliminada");
       } catch (err) {
         console.log(err);
@@ -347,5 +352,6 @@ Given("usuario existente sin {string}", function(request) {
      Then('6 recibe response status 200 {string}', function(expectedAnswer) {
       expect(this.getMessage()).to.eql(expectedAnswer)
      });
-*/
+
 // FIN ELIMINAR TAREAS
+*/

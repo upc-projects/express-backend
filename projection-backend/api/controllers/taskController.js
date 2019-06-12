@@ -27,7 +27,9 @@ exports.taskPostOrUpdate = (req, res, next) => {
                 });
             })
             .catch(err => res.status(400).json('Unable to update task'));
-        } else {
+        }  
+        else {
+            let request= req.user != undefined ? user(req.user.id) : user(req);
             db('tasks')
             .returning('*')
             .insert({
@@ -35,7 +37,7 @@ exports.taskPostOrUpdate = (req, res, next) => {
             acceptanceCriteria: acceptanceCriteria,
             status: status,
             limitDate: limitDate,
-            user_id: user(next)
+            user_id: request
             })
             .then(task => {
                 res.json(task[0]); //return the object not the array
@@ -65,9 +67,10 @@ exports.taskGetOne = (req, res, next) => {
 }  
 
 exports.taskDeleteOne = (req, res, next) => {
+    let request = req.user != undefined ? user(req.user.id) : user(req);
     db('tasks').where({
-        'id': req.body.id,
-        'user_id': user(next)
+        'id': req.params.id,
+        'user_id': request
     }).del()
     .then(respose => {
         res.status(200).json({
