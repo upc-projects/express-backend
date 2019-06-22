@@ -4,8 +4,8 @@ const db = knex({
     client: 'pg',
     connection: {
       host : 'localhost',
-      user : 'postgres',
-      password : 'postgres',
+      user : '',
+      password : '',
       database : 'projection-api'
     }
 });

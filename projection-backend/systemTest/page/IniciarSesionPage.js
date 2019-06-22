@@ -2,6 +2,7 @@ const ProjectionDriver = require('../driver/ProjectionDriver').ProjectionDriver;
 var webdriver = require('selenium-webdriver'),
     By = webdriver.By;
 const assert = require('assert');
+var screenshotTaker = require('../utils/screenshotTaker.js');
     
 class IniciarSesionPage {
     constructor(pagina) {
@@ -15,26 +16,33 @@ class IniciarSesionPage {
     }
 
 
-    iniciarSesion(usuario, clave, emailExpect, passwordExpect) {
-        this.webDriver.findElement(this.cajaUsuarios).clear();
-        this.webDriver.findElement(this.cajaUsuarios).sendKeys(usuario);
-        this.webDriver.sleep(this.MAX_TIEMPO).then(() => {
-            this.webDriver.findElement(this.cajaClave).clear();
-            this.webDriver.findElement(this.cajaClave).sendKeys(clave);
-            this.webDriver.sleep(this.MAX_TIEMPO).then(() => {
-                this.webDriver.findElement(this.botonIniciarSesion).click();
-                this.webDriver.sleep(this.MAX_TIEMPO).then(() => {
-                    if (emailExpect != '')
-                        this.webDriver.findElement(this.mensajeEmail).getText().then((text) => {
-                            assert(text === emailExpect);
-                        }); 
-                    if (passwordExpect != '')
-                        this.webDriver.findElement(this.mensajePassword).getText().then((text) => {
-                            assert(text === passwordExpect);
-                        }); 
-                })
-            })
-        })
+    async iniciarSesion(usuario, clave, emailExpect, passwordExpect) {
+        await this.webDriver.findElement(this.cajaUsuarios).clear();
+        await this.webDriver.findElement(this.cajaUsuarios).sendKeys(usuario);
+        await this.webDriver.sleep(this.MAX_TIEMPO);
+        await this.webDriver.findElement(this.cajaClave).clear();
+        await this.webDriver.findElement(this.cajaClave).sendKeys(clave);
+        await this.webDriver.sleep(this.MAX_TIEMPO);
+        await this.webDriver.findElement(this.botonIniciarSesion).click();
+        await this.webDriver.sleep(this.MAX_TIEMPO);
+        if (emailExpect != '') {
+            var text = await this.webDriver.findElement(this.mensajeEmail).getText();
+            assert(text === emailExpect);
+            if (text === emailExpect) {
+                this.webDriver.takeScreenshot().then(function(data) {
+                    screenshotTaker.writeScreenshot(text + '.png', data);
+                });
+            }
+        }
+        if (passwordExpect != '') {
+            var text = await this.webDriver.findElement(this.mensajePassword).getText();
+            assert(text === passwordExpect);
+            if (text === passwordExpect) {
+                this.webDriver.takeScreenshot().then(function(data) {
+                    screenshotTaker.writeScreenshot(text + '.png', data);
+                });
+            }
+        }   
     }
 
     obtenerPagina() {
