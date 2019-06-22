@@ -1,6 +1,7 @@
 var webdriver = require('selenium-webdriver');
     
 var chrome = require('selenium-webdriver/chrome');
+
 var o = new chrome.Options();
 o.addArguments('disable-infobars');
 
@@ -9,13 +10,15 @@ var path = require('chromedriver').path;
 var service = new chrome.ServiceBuilder(path).build();
 chrome.setDefaultService(service);
 
+
+
 class ProjectionDriver {
 
     static inicializarWebDriver(navegador) {
         this.driver = null;
         try {
             switch(navegador) {
-                case "firefox": //needs fixing
+                case "firefox": //needs fixing`
                 this.driver = new webdriver.Builder()
                     .forBrowser('firefox')
                     .build(); break;
