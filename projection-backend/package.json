@@ -33,7 +33,8 @@
   },
   "scripts": {
     "start": "nodemon server.js",
-    "test": "jest && cucumber-js",
+    "test": "cucumber-js",
+    "jest": "jest",
     "cucumber": "./node_modules/.bin/cucumber-js features/**/*.feature --logLevel=error --require 'step-definitions/**/*.js' --require 'hooks/**/*.js'  --require-module js-node/register --format-options '{\"snippetInterface\": \"async-await\"}' --format json:reports/cucumber-report.json --format summary"
   },
   "test": "jest",
