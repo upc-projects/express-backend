@@ -25,6 +25,7 @@ class TareaPage {
 
         //Actualizar Tarea
         this.botonActualizarTarea=By.xpath('//*[@id="root"]/div/div/div/div/div/div[1]/div[2]/div[2]/a')
+        this.botonEnviar=By.xpath('//*[@id="root"]/div/div/div/div/div/form/input');
 
         //Cambiar Estado
         this.radioBoton1=By.xpath('//*[@id="root"]/div/div/div/div/div/div[1]/div[2]/div[2]/form/div[1]/div/div[1]/label');
@@ -95,15 +96,15 @@ class TareaPage {
         await this.webDriver.sleep(this.MAX_TIEMPO)
         await this.webDriver.findElement(this.botonEnviar).click();
         await this.webDriver.sleep(this.MAX_TIEMPO)
-        if (summaryNotBlank != '') {
-            var text = await this.webDriver.findElement(this.mensajeDescripcion).getText();
+        /*if (summaryNotBlank != '') {
+            var text = this.webDriver.findElement(this.mensajeDescripcion).getText();
             assert(text === summaryNotBlank);
             if(text === summaryNotBlank) {
                 this.webDriver.takeScreenshot().then(function(data) {
                     screenshotTaker.writeScreenshot(text + '.png', data);
                 });
             }
-        }
+        }*/
     }
 
     async cambiarEstado() {
@@ -128,6 +129,7 @@ class TareaPage {
         await this.webDriver.findElement(this.enviarTareaTerminada).click();
         await this.webDriver.sleep(this.MAX_TIEMPO);
         this.webDriver.switchTo().alert().accept(); 
+        await this.webDriver.sleep(this.MAX_TIEMPO);
     }
 
     obtenerPagina() {

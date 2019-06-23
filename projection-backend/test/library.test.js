@@ -9,7 +9,7 @@ const dataArr = require('./dataRead');
     describe('Projection: user register scenarios', function() {
         this.timeout(50000)
         beforeEach(function() {
-            registrarPage = new RegistrarPage('firefox'); 
+            registrarPage = new RegistrarPage('chrome'); 
         });
     
         afterEach(function() {
@@ -22,7 +22,7 @@ const dataArr = require('./dataRead');
             'Email is required', '');
         });
         
-        it('register user with existing email', async function() {
+        it('register user with existing email', async function() {//
             registrarPage.ingresarpagina(dataArr[2][1]);
             await registrarPage.registrar(dataArr[2][2], dataArr[2][3], dataArr[2][4], dataArr[2][5], dataArr[2][6], 
             'Email already exists', '');
@@ -52,7 +52,7 @@ const dataArr = require('./dataRead');
             '', 'Passwords must match');
         })
     });
-    
+   
     // USER LOGIN SCENARIOS
     
     describe('Projection: user login scenarios', function() {
@@ -70,9 +70,9 @@ const dataArr = require('./dataRead');
             registrarPage.ingresarpagina(dataArr[7][1]);
             await iniciarSesionPage.iniciarSesion(dataArr[7][2], dataArr[7][3], 'Username cannot be blank', '');
         });
-        it('login user: Password cannot be blank', async function() {
+        it('login user: Password cannot be blank', async function() {//
             registrarPage.ingresarpagina(dataArr[8][1]);
-            await iniciarSesionPage.iniciarSesion(dataArr[8][2], dataArr[8][3], '', 'Password cannot be blank');
+            await iniciarSesionPage.iniciarSesion(dataArr[8][2], dataArr[8][3], '', 'Password must not be empty');
         });
         it('login user: Invalid Username and password', async function() {
             registrarPage.ingresarpagina(dataArr[9][1]);
@@ -145,12 +145,20 @@ const dataArr = require('./dataRead');
         afterEach(function() {
             tareaPage.cerrarPagina();
         });
-        it('update task: deleted completed', async function() {
+        it('delete task: deleted completed', async function() {
             registrarPage.ingresarpagina(dataArr[13][1]);
             await tareaPage.iniciarSesion(dataArr[13][2], dataArr[13][3]);
             await tareaPage.eliminarTarea();
         });
-        it('update task: deleted completed', async function() {
+
+        //Registra
+        it('register task: register completed', async function() {
+            registrarPage.ingresarpagina(dataArr[16][1]);
+            await tareaPage.iniciarSesion(dataArr[16][2], dataArr[16][3]);
+            await tareaPage.registrarTarea(dataArr[16][4], dataArr[16][5], dataArr[16][6], dataArr[16][7],'');
+        });
+        //Terminado
+        it('delete task: done completed', async function() {
             registrarPage.ingresarpagina(dataArr[14][1]);
             await tareaPage.iniciarSesion(dataArr[14][2], dataArr[14][3]);
             await tareaPage.tareaTerminada();
