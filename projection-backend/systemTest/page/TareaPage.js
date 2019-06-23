@@ -28,13 +28,13 @@ class TareaPage {
         this.botonEnviar=By.xpath('//*[@id="root"]/div/div/div/div/div/form/input');
 
         //Cambiar Estado
-        this.radioBoton1=By.xpath('//*[@id="root"]/div/div/div/div/div/div[1]/div[2]/div[2]/form/div[1]/div/div[1]/label');
-        this.radioBoton2=By.xpath('//*[@id="root"]/div/div/div/div/div/div[1]/div[2]/div[2]/form/div[1]/div/div[2]/label');
-        this.radioBoton3=By.xpath('//*[@id="root"]/div/div/div/div/div/div[1]/div[2]/div[2]/form/div[1]/div/div[3]/label');
-        this.botonCambiarEstado=By.xpath('//*[@id="root"]/div/div/div/div/div/div[1]/div[2]/div[2]/form/input');
+        this.radioBoton1=By.xpath('//*[@id="root"]/div/div/div/div/div/div[2]/div[2]/div[2]/form/div[1]/div/div[1]/label');
+        this.radioBoton2=By.xpath('//*[@id="root"]/div/div/div/div/div/div[2]/div[2]/div[2]/form/div[1]/div/div[2]/label');
+        this.radioBoton3=By.xpath('//*[@id="root"]/div/div/div/div/div/div[2]/div[2]/div[2]/form/div[1]/div/div[3]/label');
+        this.botonCambiarEstado=By.xpath('//*[@id="root"]/div/div/div/div/div/div[2]/div[2]/div[2]/form/input');
 
         //Eliminar tarea
-        this.botonEliminar=By.xpath('//*[@id="root"]/div/div/div/div/div/div[2]/div[2]/div[2]/button');
+        this.botonEliminar=By.xpath('//*[@id="root"]/div/div/div/div/div/div[3]/div[2]/div[2]/button');
 
         //Tarea eliminada
         this.checkboxTareaEliminada=By.xpath('//*[@id="root"]/div/div/div/div/div/div[2]/div[2]/div[2]/form/div[2]/div/label');
@@ -108,7 +108,7 @@ class TareaPage {
     }
 
     async cambiarEstado() {
-        await this.webDriver.findElement(this.radioBoton2).click();
+        await this.webDriver.findElement(this.radioBoton3).click();
         await this.webDriver.sleep(this.MAX_TIEMPO)
         await this.webDriver.findElement(this.botonCambiarEstado).click();
         await this.webDriver.sleep(this.MAX_TIEMPO);

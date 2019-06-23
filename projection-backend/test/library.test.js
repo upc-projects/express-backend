@@ -84,7 +84,7 @@ const dataArr = require('./dataRead');
         });
         
     });
-    
+   
     describe('Projection: register task scenarios', function() {
         this.timeout(50000);
         beforeEach(function() {

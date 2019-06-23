@@ -12,6 +12,6 @@ chrome,http://localhost:3000/,dazterygmail.com,testing
 chrome,http://localhost:3000/,daztery@gmail.com,testing321,,Lorem Ipsummmm,To Do,01/02/1999
 chrome,http://localhost:3000/,daztery@gmail.com,testing321,Tarea1,Lorem Ipsummmm,To Do,01/02/1999
 chrome,http://localhost:3000/,daztery@gmail.com,testing321,Tarea2,I want a 20 in my final exam,IN PROGRESS,12/06/2019
-chrome,http://localhost:3000/,daztery@gmail.com,testing321,IN PROGRESS
+chrome,http://localhost:3000/,daztery@gmail.com,testing321,DONE
 chrome,http://localhost:3000/,daztery@gmail.com,testing321
 chrome,http://localhost:3000/,daztery@gmail.com,testing321,Tarea3,Lorem Ipsummmm,IN PROGRESS,01/02/1999
