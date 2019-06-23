@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1561165325393" clover="3.2.0">
-  <project timestamp="1561165325393" name="All files">
+<coverage generated="1561244093125" clover="3.2.0">
+  <project timestamp="1561244093125" name="All files">
     <metrics statements="39" coveredstatements="39" conditionals="0" coveredconditionals="0" methods="14" coveredmethods="14" elements="53" coveredelements="53" complexity="0" loc="39" ncloc="39" packages="2" files="3" classes="3"/>
     <package name="controllers">
       <metrics statements="36" coveredstatements="36" conditionals="0" coveredconditionals="0" methods="14" coveredmethods="14"/>
-      <file name="TaskControllerStatic.js" path="/Users/diegosalasnoain/Desktop/UPC VII/Diseno de experimentos/express-backend/projection-backend/api/controllers/TaskControllerStatic.js">
+      <file name="TaskControllerStatic.js" path="D:\Users\DOMINIC\Desktop\UPC VII\Diseño de Experimentos\express-backend\projection-backend\api\controllers\TaskControllerStatic.js">
         <metrics statements="28" coveredstatements="28" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="9"/>
         <line num="1" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
@@ -35,7 +35,7 @@
         <line num="48" count="1" type="stmt"/>
         <line num="52" count="1" type="stmt"/>
       </file>
-      <file name="UserControllerStatic.js" path="/Users/diegosalasnoain/Desktop/UPC VII/Diseno de experimentos/express-backend/projection-backend/api/controllers/UserControllerStatic.js">
+      <file name="UserControllerStatic.js" path="D:\Users\DOMINIC\Desktop\UPC VII\Diseño de Experimentos\express-backend\projection-backend\api\controllers\UserControllerStatic.js">
         <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -49,7 +49,7 @@
     </package>
     <package name="test">
       <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="proyectionDbMock.js" path="/Users/diegosalasnoain/Desktop/UPC VII/Diseno de experimentos/express-backend/projection-backend/api/test/proyectionDbMock.js">
+      <file name="proyectionDbMock.js" path="D:\Users\DOMINIC\Desktop\UPC VII\Diseño de Experimentos\express-backend\projection-backend\api\test\proyectionDbMock.js">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="2" type="stmt"/>
         <line num="49" count="2" type="stmt"/>

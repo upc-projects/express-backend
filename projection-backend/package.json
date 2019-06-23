@@ -39,6 +39,8 @@
   },
   "test": "jest",
   "jest": {
-    "testPathIgnorePatterns" : ["<rootDir>/test"]
+    "testPathIgnorePatterns": [
+      "<rootDir>/test"
+    ]
   }
 }

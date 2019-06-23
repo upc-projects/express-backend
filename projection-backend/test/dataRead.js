@@ -5,8 +5,8 @@ var dataArr = [];
 
 fs.createReadStream('test/data.csv')
     .pipe(csv())
-    .on('data', function(f) {
-        dataArr.push(f);
+    .on('data', function(data) {
+        dataArr.push(data);
     })
     .on('end', function() {
     });
