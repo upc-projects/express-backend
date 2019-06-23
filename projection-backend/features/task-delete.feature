@@ -8,9 +8,9 @@ Scenario: Elimninar tareas1
     When 1 hace click en "eliminar tarea"
     Then 1 recibe mensaje "¿Desea eliminar esta tarea?"
 
-#Scenario: Elimninar tareas2
-#    Given 2 mensaje "¿Desea eliminar esta tarea?"
-#    When 2 se ejecute metodo delete "eliminar tarea"
-#    Then 6 recibe response status 200 "tarea eliminada"
+Scenario: Elimninar tareas2
+    Given 2 mensaje "¿Desea eliminar esta tarea?"
+    When 2 se ejecute metodo delete "eliminar tarea"
+    Then 6 recibe response status 200 "tarea eliminada"
 
 # # FIN ELIMINAR TAREAS  

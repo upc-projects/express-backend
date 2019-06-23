@@ -133,39 +133,43 @@ Given("ingresa los 3 campos {string}", function(full) {
     expect(this.getMessage()).to.eql(expectedAnswer);
   });
 
-// FIN REGISTRAR USUARIO
 
-// INICIO ELIMINAR USUARIO
+// Registrar 2do usuario
 
-//Descomentar y cambiar el id
-/*
-// Scenario: Eliminar usuario5: Elimina usuario
-Given("mensaje {string}", function(message) {
-    this.setRequest(message)
+Given("5 ingresa los 3 campos {string}", function(full) {
+  this.setRequest(full)
 });
 
-    When('5 se ejecuta metodo delete {string}', function(request) {
-        const id = 1;
-        this.setRes(200)
-        try {
-          userController.userDelete(id, this.getRes(), null);
-          this.setMessage("User deleted");
-        } catch (err) {
-          console.log(err);
-        }
-    });
+  When('5 se ejecuta metodo post {string}', function(enzo) {
 
-    Then('5 recibe response status 200 {string}', function(expectedAnswer) {
-        expect(this.getMessage()).to.eql(expectedAnswer)
-    });
+    const usuario = {
+      body: {
+          username: 'dominic@gmail.com',
+          password: 'testing321',
+          confirmPassword: 'testing321'
+      }
+    }
 
-// // FIN ELIMINAR USUARIO
-*/
+    this.setUsuario(usuario.body);
+
+    this.setRes(200)
+
+    try {
+      userController.userRegister(usuario, this.getRes(), null);
+      this.setMessage("created");
+    } catch (err) {
+      console.log(err);
+    }
+  });
+
+  Then('5 recibe response status 200 {string}', function(expectedAnswer) {
+    expect(this.getMessage()).to.eql(expectedAnswer);
+  });
+
+// FIN REGISTRAR USUARIO
+
 // INICIO REGISTRAR TAREA
 
-//Primero registrar 1 Usuario
-
-/*
 // Scenario: Registrar tarea1: summary vacio
   Given("nombre de tarea es {string}", function(empty) {
       this.setRequest(empty)
@@ -210,7 +214,7 @@ Given("mensaje {string}", function(message) {
             limitDate:'2019-06-18'
           },
           user:{
-            id:1
+            id:2
           }
         }
         this.setUsuario(tarea.body);
@@ -268,7 +272,7 @@ Given("estado de tarea ha {string}", function(full) {
 Given("usuario existente con {string}", function(request) {
   this.setRequest(request)
 });
-    When('1 se ejecuta metodo get {string}', function(request) {
+    When('2 se ejecuta metodo get {string}', function(request) {
       this.setRes(200)
       id=1;
       try {
@@ -287,22 +291,52 @@ Given("usuario existente con {string}", function(request) {
 Given("usuario existente sin {string}", function(request) {
   this.setRequest(request)
 });
-    When('2 se ejecuta metodo get {string}', function(request) {
-      this.setRes(200)
+    When('3 se ejecuta metodo get {string}', function(request) {
+      this.setRes(400)
       
-      id=1;
+      id=80;
       try {
-        taskController.taskGetAll(1, this.getRes(), null);
+        taskController.taskGetAll(id, this.getRes(), null);
         this.setMessage("No hay tareas disponibles");
       } catch (err) {
         console.log(err);
       }
     });
-    Then('3 recibe response status 200 {string}', function(expectedAnswer) {
+    Then('3 recibe response status 400 {string}', function(expectedAnswer) {
       expect(this.getMessage()).to.eql(expectedAnswer)
     });
 
 // // FIN LISTAR TAREA
+
+// Registrar 2da Tarea
+Given("6 nombre de tarea tenga valor diferente a {string}", function(full) {
+  this.setRequest(full)
+});
+  When('6 se ejecuta metodo post {string}', function(request) {
+    const tarea = {
+      body: {
+        summary: 'Pantalla de Register',
+        acceptanceCriteria: 'This is the second task',
+        status: '1',
+        limitDate:'2019-06-19'
+      },
+      user:{
+        id:2
+      }
+    }
+    this.setUsuario(tarea.body);
+    this.setRes(201)
+
+    try {
+      taskController.taskPostOrUpdate(tarea, this.getRes(), null);
+      this.setMessage("Tarea guardada");
+    } catch (err) {
+      console.log(err);
+    }
+  });
+  Then('6 recibe response status 201 {string}', function(expectedAnswer) {
+    expect(this.getMessage()).to.eql(expectedAnswer);
+  });
 
 // // INICIO ELIMINAR TAREAS
 //Mensaje de ¿Desea eliminar tarea?
@@ -318,8 +352,6 @@ Given("usuario existente sin {string}", function(request) {
      });
 
 
-//Descomentar y cambiar el id
-
 //Ejecuta el metodo eliminar
 
  Given("2 mensaje {string}", function(message) {
@@ -327,17 +359,16 @@ Given("usuario existente sin {string}", function(request) {
  });
      When('2 se ejecute metodo delete {string}', function(request) {
       console.log("procesando");
-      user_id=1
       const tarea = {
         params: {
-            id:3,
+            id:1,
             summary: 'Pantalla de Login',
             acceptanceCriteria: 'acceptanceCriteria',
             status: '1',
             limitDate:'2019-06-18'
         },
         user:{
-            id:1
+            id:2
         }
       }
       this.setUsuario(tarea.body);
@@ -354,4 +385,27 @@ Given("usuario existente sin {string}", function(request) {
      });
 
 // FIN ELIMINAR TAREAS
-*/
+
+// INICIO ELIMINAR USUARIO
+
+// Scenario: Eliminar usuario5: Elimina usuario
+Given("mensaje {string}", function(message) {
+  this.setRequest(message)
+});
+
+  When('7 se ejecuta metodo delete {string}', function(request) {
+      const id = 1;
+      this.setRes(200)
+      try {
+        userController.userDelete(id, this.getRes(), null);
+        this.setMessage("User deleted");
+      } catch (err) {
+        console.log(err);
+      }
+  });
+
+  Then('7 recibe response status 200 {string}', function(expectedAnswer) {
+      expect(this.getMessage()).to.eql(expectedAnswer)
+  });
+
+// FIN ELIMINAR USUARIO

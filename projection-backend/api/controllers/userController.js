@@ -30,9 +30,11 @@ exports.userRegister = (req, res, next) => {
         message["password"] = 'Passwords must match'
         sendMessage = true;
     } 
+
     if (sendMessage) {
         return res.status(400).json(message);
     }
+    
     else {    
         bcrypt.hash(password, 10, (err, hash) => {
             if (err) {

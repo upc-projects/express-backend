@@ -23,6 +23,11 @@ Scenario: Registrar usuario4
     When 4 se ejecuta metodo post "guardar usuario"
     Then 4 recibe response status 200 "created"
 
+Scenario: Registrar usuario4
+    Given 5 ingresa los 3 campos "correctamente"
+    When 5 se ejecuta metodo post "guardar usuario"
+    Then 5 recibe response status 200 "created"
+
 # FIN REGISTRAR USUARIO
 
 
