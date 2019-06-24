@@ -14,5 +14,6 @@ for system test: mocha
 for deploying jenkins: go to jenkins.war root directory and open cmd and enter: java -jar jenkins.war
 credentials: admin jenkins (jenkins)
 credentials: admin p@ssw0rd (artifactory)
-for unit test coverage: sonar-scanner where sonar-project.properties lives in
+for unit test coverage: sonar-scanner where sonar-project.properties lives in //works only locally
+mocha test --reporter mochawesome --reporter-options autoOpen=true (for integration test report)
 ```
