@@ -16,4 +16,5 @@ credentials: admin jenkins (jenkins)
 credentials: admin p@ssw0rd (artifactory)
 for unit test coverage: sonar-scanner where sonar-project.properties lives in
 mocha test --reporter mochawesome --reporter-options autoOpen=true (for integration test report)
+crear un package tgz para publicar en artifactory a nivel del package json: npm pack
 ```
