@@ -15,7 +15,7 @@
     "fast-csv": "^2.5.0",
     "geckodriver": "^1.16.2",
     "jsonwebtoken": "^8.5.1",
-    "knex": "^0.16.5",
+    "knex": "^0.19.5",
     "mocha": "^6.1.4",
     "pg": "^7.11.0",
     "selenium-webdriver": "^3.6.0"
