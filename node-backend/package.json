@@ -24,7 +24,7 @@
       "class-validator": "^0.9.1",
       "cors": "^2.8.5",
       "cucumber-html-reporter": "4.0.5",
-      "express": "^4.15.4",
+      "express": "^4.17.3",
       "helmet": "^3.16.0",
       "jest": "^24.8.0",
       "jsonwebtoken": "^8.5.1",
